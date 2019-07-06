@@ -1,0 +1,26 @@
+<% include partials/_header %>
+
+<div class="container">
+    <div class="row">
+        <!-- FORM-->
+        <div class="col-md-5 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/edit/<%= task._id %>" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="nombre" placeholder="Nombre del Estudiante" class="form-control"
+                                value="<%= task.nombre %>">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="nota" placeholder="Nota" class="form-control"
+                            value="<%= task.nota %>">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/_footer %>

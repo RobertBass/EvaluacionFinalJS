@@ -1,0 +1,74 @@
+<% include partials/_header %>
+
+    <div class="container">
+        <div class="row">
+            <!-- FORMULARIO-->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="nombre" placeholder="Nombre del Estudiante" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="nota" placeholder="Nota" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- LISTA-->
+            <div class="col-md-7">
+                <table style="text-align: center" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Nota</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < estudiantes.length; i++){ %>
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= estudiantes[i].nombre %></td>
+                                <td><%= estudiantes[i].nota %></td>
+                                <td>
+                                    <a href="/turn/<%= estudiantes[i]._id %>" class="btn <%= estudiantes[i].status ? 'btn-success' : 'btn-dark' %>">Aprobar</a>
+                                    <a href="/delete/<%= estudiantes[i]._id %>" class="btn btn-danger">Eliminar</a>
+                                    <a href="/edit/<%= estudiantes[i]._id %>" class="btn btn-info">Modificar</a>
+                                </td>
+                            </tr
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container">
+                    <button  class="btn btn-primary">Mostrar JSON</button>
+                <button onclick="promedio()" class="btn btn-primary">Promedio</button>
+                <button class="btn btn-primary">Nota Mayor</button>
+                <button class="btn btn-primary">Nota Menor</button>
+                <br>
+                <p id="resultado"></p>
+            </div>
+        </div>
+    </div>
+
+    <% include partials/_footer %>
+
+    <script>
+        function promedio() {
+            var i = 0;
+            var cant = estudiantes.length;
+            var suma = 0;
+            var res = suma / cant;
+
+            for (i; i <= cant; i++) {
+                suma += estudiantes[i].nota;
+            }
+            alert("El Promedio de las Notas es: " + res);
+        }
+
+    </script>
